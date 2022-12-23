@@ -44,6 +44,18 @@ class MainActivity : AppCompatActivity() {
             return arr
         }
 
+        fun insertionSort(array: IntArray) {
+            for (i in 1 until array.size) {
+                val current = array[i]
+                var j = i - 1
+                while (j >= 0 && array[j] > current) {
+                    array[j + 1] = array[j]
+                    j--
+                }
+                array[j + 1] = current
+            }
+        }
+
         fun heapify(arr: IntArray, n: Int, i: Int) {
             var largest = i
             val left = 2 * i + 1
