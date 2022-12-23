@@ -166,6 +166,14 @@ class MainActivity : AppCompatActivity() {
             }
             czasStop = System.currentTimeMillis()
             sorSca.text = "Sortowanie przez scalanie: " + (czasStop - czasStart).toString() + " ms"
+
+            czasStart = System.currentTimeMillis()
+            for (i in 0 until powt) {
+                var listCopy = lista.clone()
+                insertionSort(listCopy)
+            }
+            czasStop = System.currentTimeMillis()
+            sorSca.text = "Sortowanie przez wstawianie: " + (czasStop - czasStart).toString() + " ms"
         }
     }
 }
