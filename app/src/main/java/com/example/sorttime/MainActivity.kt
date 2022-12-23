@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
-import java.util.*
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,5 +22,16 @@ class MainActivity : AppCompatActivity() {
         val sorIlo = findViewById<EditText>(R.id.editTextTextPersonName2)
         val trig = findViewById<Button>(R.id.button)
 
+        fun bubSor(lis: IntArray) {
+            for (i in lis.indices) {
+                for (x in 0 until lis.size - i - 1) {
+                    if (lis[x] > lis[x + 1]) {
+                        val temp = lis[x]
+                        lis[x] = lis[x + 1]
+                        lis[x + 1] = temp
+                    }
+                }
+            }
+        }
     }
 }
