@@ -6,7 +6,6 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import java.util.*
-import kotlin.random.Random.Default.nextInt
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -15,7 +14,6 @@ class MainActivity : AppCompatActivity() {
 
         //deklaracja elementów layoutu
         val random = Random()
-        val lisBeftex = findViewById<TextView>(R.id.textView6)
         val sorBab = findViewById<TextView>(R.id.textView)
         val sorWst = findViewById<TextView>(R.id.textView2)
         val sorSca = findViewById<TextView>(R.id.textView3)
@@ -24,8 +22,8 @@ class MainActivity : AppCompatActivity() {
         val lenLis = findViewById<EditText>(R.id.editTextTextPersonName)
         val sorIlo = findViewById<EditText>(R.id.editTextTextPersonName2)
         val trig = findViewById<Button>(R.id.button)
-        var czasStart = 100000000000
-        var czasStop = 100000000000
+        var czasStart: Long = 0
+        var czasStop: Long = 1
 
         fun bubbleSort(arr:IntArray):IntArray{
             var swap = true
@@ -163,7 +161,6 @@ class MainActivity : AppCompatActivity() {
                 dlugosc = lenLis.text.toString().toInt()
             }
             var lista = IntArray(dlugosc) { random.nextInt(10) }
-            lisBeftex.text = lista.joinToString(", ", "[", "]")
 
             var powt = 1
             if (sorIlo.length() > 0) {
