@@ -25,6 +25,8 @@ class MainActivity : AppCompatActivity() {
         val lenLis = findViewById<EditText>(R.id.editTextTextPersonName)
         val sorIlo = findViewById<EditText>(R.id.editTextTextPersonName2)
         val trig = findViewById<Button>(R.id.button)
+        var czasStart = 100000000000
+        var czasStop = 100000000000
 
         fun bubbleSort(arr:IntArray):IntArray{
             var swap = true
@@ -42,10 +44,23 @@ class MainActivity : AppCompatActivity() {
             }
             return arr
         }
-        //wciśnięcie przycisku
+
         trig.setOnClickListener {
-            var dlugosc = lenLis.text.toString().toInt()
+            var dlugosc = 1
+            if (lenLis.length() > 0) {
+                dlugosc = lenLis.text.toString().toInt()
+            }
             var lista = IntArray(dlugosc) { random.nextInt(10) }
+
+            var powt = 1
+            if (sorIlo.length() > 0) {
+                powt = sorIlo.text.toString().toInt()
+            }
+
+            for (i in 0 until powt) {
+                var listCopy = lista.clone()
+                bubbleSort(listCopy)
+            }
         }
     }
 }
