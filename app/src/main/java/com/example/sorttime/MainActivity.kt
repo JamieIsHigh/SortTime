@@ -138,6 +138,22 @@ class MainActivity : AppCompatActivity() {
             }
             czasStop = System.currentTimeMillis()
             sorBab.text = "Sortowanie bąbelkowe: " + (czasStop - czasStart).toString() + " ms"
+
+            czasStart = System.currentTimeMillis()
+            for (i in 0 until powt) {
+                var listCopy = lista.clone()
+                heapSort(listCopy)
+            }
+            czasStop = System.currentTimeMillis()
+            sorHea.text = "Sortowanie heap: " + (czasStop - czasStart).toString() + " ms"
+
+            czasStart = System.currentTimeMillis()
+            for (i in 0 until powt) {
+                var listCopy = lista.clone()
+                mergeSort(listCopy)
+            }
+            czasStop = System.currentTimeMillis()
+            sorSca.text = "Sortowanie przez scalanie: " + (czasStop - czasStart).toString() + " ms"
         }
     }
 }
