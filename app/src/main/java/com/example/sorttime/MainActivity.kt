@@ -16,7 +16,6 @@ class MainActivity : AppCompatActivity() {
         //deklaracja elementów layoutu
         val random = Random()
         val lisBeftex = findViewById<TextView>(R.id.textView6)
-        val lisAfttex = findViewById<TextView>(R.id.textView7)
         val sorBab = findViewById<TextView>(R.id.textView)
         val sorWst = findViewById<TextView>(R.id.textView2)
         val sorSca = findViewById<TextView>(R.id.textView3)
@@ -51,16 +50,20 @@ class MainActivity : AppCompatActivity() {
                 dlugosc = lenLis.text.toString().toInt()
             }
             var lista = IntArray(dlugosc) { random.nextInt(10) }
+            lisBeftex.text = lista.joinToString(", ", "[", "]")
 
             var powt = 1
             if (sorIlo.length() > 0) {
                 powt = sorIlo.text.toString().toInt()
             }
 
+            czasStart = System.currentTimeMillis()
             for (i in 0 until powt) {
                 var listCopy = lista.clone()
                 bubbleSort(listCopy)
             }
+            czasStop = System.currentTimeMillis()
+            sorBab.text = "Sortowanie bąbelkowe: " + (czasStop - czasStart).toString() + " ms"
         }
     }
 }
