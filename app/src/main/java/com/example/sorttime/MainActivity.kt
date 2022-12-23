@@ -44,6 +44,41 @@ class MainActivity : AppCompatActivity() {
             return arr
         }
 
+        fun heapify(arr: IntArray, n: Int, i: Int) {
+            var largest = i
+            val left = 2 * i + 1
+            val right = 2 * i + 2
+
+            if (left < n && arr[left] > arr[largest]) {
+                largest = left
+            }
+
+            if (right < n && arr[right] > arr[largest]) {
+                largest = right
+            }
+
+            if (largest != i) {
+                val swap = arr[i]
+                arr[i] = arr[largest]
+                arr[largest] = swap
+
+                heapify(arr, n, largest)
+            }
+        }
+
+        fun heapSort(arr: IntArray) {
+            for (i in arr.size / 2 - 1 downTo 0) {
+                heapify(arr, arr.size, i)
+            }
+            for (i in arr.size - 1 downTo 0) {
+                val temp = arr[0]
+                arr[0] = arr[i]
+                arr[i] = temp
+
+                heapify(arr, i, 0)
+            }
+        }
+
         trig.setOnClickListener {
             var dlugosc = 1
             if (lenLis.length() > 0) {
