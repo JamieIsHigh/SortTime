@@ -130,6 +130,33 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        fun partition(array: IntArray, low: Int, high: Int): Int {
+            val pivot = array[high]
+            var i = low - 1
+            for (j in low until high) {
+                if (array[j] <= pivot) {
+                    i++
+                    val temp = array[i]
+                    array[i] = array[j]
+                    array[j] = temp
+                }
+            }
+            val temp = array[i + 1]
+            array[i + 1] = array[high]
+            array[high] = temp
+            return i + 1
+        }
+
+        fun quickSort(array: IntArray, low: Int, high: Int) {
+            if (low < high) {
+                val pivotIndex = partition(array, low, high)
+                quickSort(array, low, pivotIndex - 1)
+                quickSort(array, pivotIndex + 1, high)
+            }
+        }
+
+
+
         trig.setOnClickListener {
             var dlugosc = 1
             if (lenLis.length() > 0) {
@@ -173,7 +200,15 @@ class MainActivity : AppCompatActivity() {
                 insertionSort(listCopy)
             }
             czasStop = System.currentTimeMillis()
-            sorSca.text = "Sortowanie przez wstawianie: " + (czasStop - czasStart).toString() + " ms"
+            sorWst.text = "Sortowanie przez wstawianie: " + (czasStop - czasStart).toString() + " ms"
+
+            czasStart = System.currentTimeMillis()
+            for (i in 0 until powt) {
+                var listCopy = lista.clone()
+                quickSort(listCopy, 0, listCopy.size - 1)
+            }
+            czasStop = System.currentTimeMillis()
+            sorSzy.text = "Sortowanie szybkie: " + (czasStop - czasStart).toString() + " ms"
         }
     }
 }
